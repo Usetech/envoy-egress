@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.26.0
+    command: envoy -c /etc/envoy.yaml
+    ports:
+      - "8001:8001"
+      - "8000:8080"
+    restart: on-failure
+    volumes:
+      - ./envoy.yaml:/etc/envoy.yaml
+
+  unstable_service:
+    image: usetechcom/resilience-mock:latest
+    ports:
+      - "6200:6200"
+    command: uwsgi
+    env_file:
+      - .env
+    restart: on-failure
