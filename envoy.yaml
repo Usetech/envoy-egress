@@ -68,7 +68,7 @@ static_resources:
                   cluster: unstable_service
                   retry_policy:
                     retry_on: 5xx
-                    num_retries: 3
+                    num_retries: 2
                     per_try_timeout: 0.2s
 
                 typed_per_filter_config:
